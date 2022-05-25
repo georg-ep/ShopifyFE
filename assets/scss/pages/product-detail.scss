@@ -1,0 +1,139 @@
+.product {
+  display: flex;
+  margin-top: 48px;
+
+  @media (max-width: 980px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .images {
+    margin-right: 24px;
+
+    @media (max-width: 980px) {
+      margin-right: 0;
+    }
+  }
+
+  .info {
+    flex: 1;
+
+    .title {
+      color: black;
+      font-size: 32px;
+      font-weight: bold;
+
+      @media (max-width: 980px) {
+        margin-top: 24px;
+        font-size: 24px;
+      }
+    }
+
+    .header {
+      font-size: 32px;
+      font-weight: bold;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+      @media (max-width: 980px) {
+        font-size: 24px;
+      }
+
+      &_ta-c {
+        text-align: center;
+      }
+
+      &_uline {
+        text-decoration: underline;
+        font-family: inherit;
+      }
+    }
+
+    .info-container {
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+
+      .gif {
+        margin-top: 24px;
+        margin-bottom: 48px;
+        border: 4px solid var(--primary);
+        width: 400px;
+        height: 400px;
+
+        @media (max-width: 500px) {
+          width: calc(100% - 16px);
+          height: calc(100% - 16px);
+        }
+      }
+    }
+
+    .description {
+      font-size: 18px;
+      color: rgba($color: #000000, $alpha: 0.5);
+      margin-bottom: 6px;
+
+      @media (max-width: 980px) {
+        font-size: 12px;
+      }
+
+      .bold {
+        font-weight: bold;
+      }
+
+      &_ta-c {
+        text-align: center;
+      }
+    }
+
+    .price {
+      display: flex;
+      align-items: center;
+      font-size: 24px;
+      margin-top: 24px;
+
+      div:not(:last-child) {
+        margin-right: 16px;
+      }
+
+      .discount-label {
+        background: var(--primary);
+        color: white;
+        font-weight: bold;
+        font-size: 14px;
+        display: inline-block;
+        padding: 4px;
+      }
+      
+      .original {
+        text-decoration: line-through;
+      }
+
+      .current {
+        color: var(--primary);
+        font-weight: bold;
+      }
+    }
+
+
+    .reviews {
+      display: flex;
+      align-items: center;
+      margin-top: 24px;
+
+      .count {
+        font-weight: 700;
+        color: rgba($color: black, $alpha: 0.8);
+        margin-left: 8px;
+        font-size: 18px;
+      }
+
+      .star {
+        height: 24px;
+        width: 24px;
+      }
+    }
+  }
+}

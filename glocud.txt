@@ -1,0 +1,5 @@
+Switch user
+-> gcloud auth login
+
+Deploy app to project
+-> gcloud app deploy app.yaml --project dropship-350409

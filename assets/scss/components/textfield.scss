@@ -1,0 +1,45 @@
+.textfield {
+  color: black;
+  font-size: 18px;
+  padding: 8px 12px;
+  border: none;
+  outline: none;
+  display: flex;
+  border-radius: 4px;
+  margin: 0;
+  
+  &_with-icon {
+    border-radius: 4px 0 0 4px;
+  }
+
+  .trailing-icon {
+    background: var(--primary);
+    border-radius: 0 4px 4px 0;
+    padding: 12px;
+    height: 100%;
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      filter: brightness(90%);
+    }
+
+    .icon {      
+      height: 24px;
+      width: 24px;
+    }
+  }
+}
+
+input::placeholder, textarea::placeholder {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: rgba($color: black, $alpha: 0.2);
+}
+
+input, textarea {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+textarea {
+  resize: none;
+}
