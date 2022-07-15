@@ -1,0 +1,46 @@
+.featured-product {
+  background: white;
+  animation: bob 2s infinite forwards;
+  background: white;
+  box-shadow: 0 0 10px 2px lightblue;  
+  padding: 20px;
+  border-radius: 8px;
+  display: inline-block;
+  z-index: 20;
+
+  .label {
+    color: black;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .warning {
+    color: var(--error);
+    font-size: 10px;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+  
+  .image {
+    height: 300px !important;
+    width: 300px !important;
+    margin-bottom: 12px;
+
+    @media (max-width: 1249px) {
+      height: 200px !important;
+      width: 200px !important;
+    }
+  }
+}
+
+@keyframes bob {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

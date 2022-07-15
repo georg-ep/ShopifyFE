@@ -1,23 +1,49 @@
-const BASE_URL = "http://localhost:80/api/";
+export const state = () => ({
+  cart: null,
+  modal: null,
+});
+
+
+export const mutations = {
+  setCart(state, cart) {
+    state.cart = cart;
+  },
+  setModal(state, modal) {
+    state.modal = modal;
+  }
+};
+
 export const actions = {
-  async updateCart(context, payload) {
-    return await fetch(`${BASE_URL}update_cart/`, { body: JSON.stringify(payload), method: "PATCH", credentials: "include" });
+  async subscribe(context, payload) {
+    return await this.$axios.$post(`subscribe/`, payload);
+  },
+  async postContact(context, payload) {
+    return await this.$axios.$post(`contact/submission/`, payload);
   },
   async fetchCart(context) {
     const raw = await fetch(
-      `${BASE_URL}fetch_cart/`, {
+      `${process.env.BASE_URL}fetch_cart/`, {
       method: "GET",
       credentials: "include",
     },
     );
-    return raw.json();
+    const data = await raw.json()
+    context.commit("setCart", data);
+    return data;
   },
   async updateLineItems(context, item) {
-    const checkout = await fetch(`${BASE_URL}line_items/update/`, {
+    let checkout = await fetch(`${process.env.BASE_URL}line_items/update/`, {
       method: "POST",
       credentials: "include",
       body: JSON.stringify(item),
     });
-    return checkout.json();
+    checkout = await checkout.json();
+    context.commit("setCart", checkout);
+    return checkout;
   },
+};
+
+export const getters = {
+  cart: (state) => state.cart,
+  modal: (state) => state.modal,
 };

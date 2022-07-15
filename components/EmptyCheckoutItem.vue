@@ -5,15 +5,15 @@
       <div class="empty-cart_desc">
         Add items to your cart in order to checkout
       </div>
+      <Button
+        @click="$router.push('/product/pen/')"
+        :outline="true"
+        :text-color="'var(--primary)'"
+        class="mt-24"
+        :font-size="'14px'"
+        :text="'Shop Products'"
+      />
     </div>
-    <Button
-      @click="$router.push('/product/pen/')"
-      :outline="true"
-      :text-color="'var(--primary)'"
-      class="mt-24"
-      :width="'200px'"
-      :text="'Shop Products'"
-    />
   </div>
 </template>
 

@@ -2,9 +2,7 @@
   <div
     :style="[
       styles,
-      { padding: activateSpinner ? '11px 0' : padding },
-      { width: activateSpinner ? '100%' : width },
-      { color: activateSpinner ? 'var(--primary)' : textColor }
+      { color: activateSpinner ? 'var(--primary)' : textColor },
     ]"
     @click="$emit('click')"
     class="button"
@@ -29,6 +27,10 @@ export default {
     activateSpinner: {
       type: Boolean,
       default: false,
+    },
+    fontSize: {
+      type: String,
+      default: "16px",
     },
     color: {
       type: String,
@@ -59,11 +61,12 @@ export default {
         width: this.width,
         height: this.height,
         padding: this.padding,
+        'font-size': this.fontSize,
       };
       if (this.outline || this.activateSpinner) {
         delete styles["background"];
         styles["color"] = this.color;
-        styles["border"] = `1px solid ${this.color}`;
+        styles["box-shadow"] = `0 0 0 1px ${this.color}`;
       }
       return styles;
     },

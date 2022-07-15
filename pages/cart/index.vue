@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container container_min">
     <div class="container_content">
       <div class="cart">
         <div v-if="checkout && checkout.line_items">
@@ -17,20 +17,22 @@
           <EmptyCheckoutItem class="mt-24" v-else />
           <div v-if="checkout.line_items.length" class="divider" />
           <div v-if="checkout.line_items.length" class="flex-row">
+            <div>Shipping</div>
+            <div class="bold-text">Free</div>
+          </div>
+          <div v-if="checkout.line_items.length" class="flex-row">
             <div class="subtitle">Total</div>
             <div class="price">£{{ checkout.total.toFixed(2) }}</div>
-          </div>
-          <div v-if="checkout.line_items.length" class="bold-text">
-            Free shipping included
           </div>
           <div class="actions">
             <Button
               v-if="checkout.line_items.length"
               @click="toPayment()"
+              :activate-spinner="loadingCheckout"
               :text="'Checkout'"
             />
             <Button
-              v-if="checkout.line_items.length"
+              v-if="checkout.line_items.length && !loadingCheckout"
               @click="$router.push('/product/pen/')"
               :outline="true"
               :text-color="'var(--primary)'"
@@ -56,27 +58,14 @@ export default {
       client: null,
       noCheckout: false,
       checkout: null,
+      loadingCheckout: false,
     };
   },
 
   async mounted() {
     const checkout = await this.$store.dispatch("fetchCart");
-    console.log(checkout);
     this.checkout = checkout;
   },
-
-  // async mounted() {
-  //   if (Object.keys(this.$route.query).includes("checkout_id")) {
-  //     this.client = Client.buildClient({
-  //       domain: "georgetheepic.myshopify.com",
-  //       storefrontAccessToken: "31f06b1c172e2ea3444dbb07fdc92d6e",
-  //     });
-  //     const id = this.$route.query.checkout_id;
-  //     this.checkout = await this.client.checkout.fetch(id);
-  //   } else {
-  //     this.noCheckout = true;
-  //   }
-  // },
   methods: {
     async remove(index) {
       this.checkout = await this.$store.dispatch("updateLineItems", {
@@ -87,16 +76,23 @@ export default {
       });
     },
     async toPayment() {
-      const checkoutId = this.checkout.id;
-      const lineItemsToUpdate = [
-        { id: this.checkout.lineItems[idx].id, quantity },
-      ];
-
-      this.checkout = await this.client.checkout.updateLineItems(
-        checkoutId,
-        lineItemsToUpdate
+      this.loadingCheckout = true;
+      this.client = Client.buildClient({
+        domain: "georgetheepic.myshopify.com",
+        storefrontAccessToken: "31f06b1c172e2ea3444dbb07fdc92d6e",
+      });
+      const checkout = await this.client.checkout.create();
+      let line_items = [];
+      this.checkout.line_items.forEach((item) =>
+        line_items.push({
+          variantId: item.product.shopify_id,
+          quantity: item.quantity,
+          customAttributes: [{ key: "Selected Colour", value: item.colour }],
+        })
       );
-      window.open(this.checkout.webUrl, "_blank");
+      await this.client.checkout.addLineItems(checkout.id, line_items);
+      window.open(checkout.webUrl);
+      this.loadingCheckout = false;
     },
     async updateQuantity(quantity, index) {
       this.checkout = await this.$store.dispatch("updateLineItems", {
@@ -105,6 +101,7 @@ export default {
         colour: this.checkout.line_items[index].colour,
         quantity,
       });
+      console.log("checkout", this.checkout);
     },
   },
 };

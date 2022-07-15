@@ -13,7 +13,7 @@
       />
     </div>
     <div class="dropdown-wrapper">
-      <div class="dropdown" :id="_uid">
+      <div class="dropdown" :id="id">
         <div
           @click="selectItem(index)"
           v-for="(item, index) in items"
@@ -47,7 +47,11 @@ export default {
   data() {
     return {
       show: false,
+      id: null,
     };
+  },
+  mounted() {
+    this.id = this._uid;
   },
   methods: {
     selectItem(idx) {
@@ -56,7 +60,7 @@ export default {
     },
     toggleDropdown() {
       this.show = !this.show;
-      const dropdown = document.getElementById(this._uid);
+      const dropdown = document.getElementById(this.id);
       dropdown.classList.toggle("active");
     },
   },

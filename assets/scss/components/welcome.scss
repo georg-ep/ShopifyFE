@@ -4,26 +4,82 @@
   justify-content: center;
   color: black;
   left: 0;
-  height: calc(100vh - 478px);
+  height: calc(100vh - 146px);
   width: 100%;
-  
-  @media (max-width: 800px) {
-    height: calc(100vh - 333px);
+
+
+  @media (max-width: 1050px) {
+    height: 734.5px;
   }
 
   .bg-fill {
     position: absolute;
     width: 100vw;
     height: 100%;
-    background: var(--primary);
-    opacity: 0.1;
+
+    #particle-container {
+      opacity: 0;
+      transition: 0.3s ease-in-out;
+
+      &.active {
+        opacity: 1;
+      }
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    @for $i from 1 through 30 {
+      @keyframes particle-animation-#{$i} {
+        100% {
+          transform: translate3d((random(90) * 1vw), (random(90) * 1vh), (random(100) * 1px));
+        }
+      }
+
+      .particle:nth-child(#{$i}) {
+        animation: particle-animation-#{$i} 60s infinite;
+        $size: random(5) + 5 + px;
+        opacity: random(100)/100;
+        height: $size;
+        width: $size;
+        animation-delay: -$i * .2s;
+        transform: translate3d((random(90) * 1vw), (random(90) * 1vh), (random(100) * 1px));
+        background: hsl(random(360), 70%, 50%);
+      }
+    }
+  }
+
+  .content-container {
+    display: flex;
+    width: 100%;
+
+    @media (max-width: 1249px) {
+      flex-direction: column;
+    }
   }
 
   .content {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     width: 100%;
-    margin-top: 32px;
+
+    @media (max-width: 1249px) {
+      align-items: center;
+      text-align: center;
+
+      &:last-child {
+        padding-bottom: 48px;
+      }
+    }
+
+    flex: 1;
+
+    &:first-child {
+      flex: 2;
+    }
   }
 
   .alert-banner {
@@ -54,7 +110,7 @@
 
     span {
       color: var(--primary);
-      font-weight: bold;
+      font-weight: 700;
 
       .discount {
         font-size: 100px;
@@ -70,6 +126,7 @@
     opacity: 0;
     transform: translateX(1000px);
     transition: 0.3s ease-in-out;
+    margin-top: 24px;
   }
 
   .button.active {
@@ -77,25 +134,29 @@
     transform: translate3d(0, 0, 0);
   }
 
-  .site-name {
-    display: flex;
-    align-items: center;
+  .site-header {
     color: black;
-    font-size: 48px;
+    font-size: 18px;
     opacity: 0;
     transform: translate3d(-1000px, 0, 0);
     transition: 0.3s ease-in-out;
 
-    @media (max-width: 800px) {
-      font-size: 50px;
-    }
+    .title {
+      font-weight: 700;
+      font-size: 48px;
+      margin-bottom: 8px;
 
-    @media (max-width: 600px) {
-      font-size: 30px;
+      @media (max-width: 600px) {
+        font-size: 36px;
+      }
+
+      @media (max-width: 400px) {
+        font-size: 30px;
+      }
     }
   }
 
-  .site-name.active {
+  .site-header.active {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
@@ -118,26 +179,26 @@
   }
 
   .site-desc {
+    display: flex;
+    align-items: center;
     opacity: 0;
     font-size: 18px;
     transition: 0.3s ease-in-out;
     transform: translateY(-1000px);
-    color: rgba($color: black, $alpha: 0.7);
-    margin: 18px 0;
+    color: rgba($color: black, $alpha: 0.5);
 
-    @media (max-width: 800px) {
-      font-size: 16px;
-      margin: 16px;
+    @media (max-width: 600px) {
+      font-size: 12px;
     }
 
-    @media (max-width: 800px) {
-      font-size: 12px;
-      margin: 12px 0;
+    @media (max-width: 1249px) {
+      justify-content: center;
     }
 
     span {
       color: var(--primary);
-      font-weight: bold;
+      font-weight: 700;
+      margin: 0 4px;
     }
   }
 
@@ -158,10 +219,37 @@
   0% {
     background-color: rgba($color: black, $alpha: 0.05);
   }
+
   50% {
     background-color: rgba($color: black, $alpha: 0.1);
   }
+
   100% {
     background-color: rgba($color: black, $alpha: 0.05);
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.hyphen {
+  width: 50px;
+  height: 2px;
+  background: rgba($color: black, $alpha: 0.5);
+  margin-right: 8px;
+
+  @media (max-width: 1259px) {
+    display: none;
   }
 }

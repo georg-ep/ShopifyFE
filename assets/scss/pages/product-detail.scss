@@ -8,7 +8,7 @@
     justify-content: center;
   }
 
-  .images {
+  .left-side {
     margin-right: 24px;
 
     @media (max-width: 980px) {
@@ -22,45 +22,26 @@
     .title {
       color: black;
       font-size: 32px;
-      font-weight: bold;
+      font-weight: 700;
+      text-align: left;
 
       @media (max-width: 980px) {
         margin-top: 24px;
         font-size: 24px;
-      }
-    }
-
-    .header {
-      font-size: 32px;
-      font-weight: bold;
-      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-      @media (max-width: 980px) {
-        font-size: 24px;
-      }
-
-      &_ta-c {
-        text-align: center;
-      }
-
-      &_uline {
-        text-decoration: underline;
-        font-family: inherit;
       }
     }
 
     .info-container {
       margin-bottom: 24px;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       flex-direction: column;
 
       .gif {
-        margin-top: 24px;
-        margin-bottom: 48px;
         border: 4px solid var(--primary);
         width: 400px;
+        margin: 24px auto 48px auto;
         height: 400px;
 
         @media (max-width: 500px) {
@@ -73,14 +54,28 @@
     .description {
       font-size: 18px;
       color: rgba($color: #000000, $alpha: 0.5);
-      margin-bottom: 6px;
+      width: 600px;
+      margin: 0 auto;
+
+      @media (max-width: 640px) {
+        width: calc(100% - 32px);
+      }
+
+      ul {
+        padding-left: 0;
+        list-style-type: lower-greek;
+      }
+      
+      &:last-child {
+        margin-bottom: 18px;
+      }
 
       @media (max-width: 980px) {
         font-size: 12px;
       }
 
       .bold {
-        font-weight: bold;
+        font-weight: 700;
       }
 
       &_ta-c {
@@ -113,7 +108,7 @@
 
       .current {
         color: var(--primary);
-        font-weight: bold;
+        font-weight: 700;
       }
     }
 
@@ -125,9 +120,13 @@
 
       .count {
         font-weight: 700;
-        color: rgba($color: black, $alpha: 0.8);
+        color: var(--blue);
         margin-left: 8px;
         font-size: 18px;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
 
       .star {
@@ -135,5 +134,30 @@
         width: 24px;
       }
     }
+  }
+}
+
+.header {
+  font-size: 26px;
+  font-weight: 700;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: center;
+  margin-bottom: 24px;
+
+  @media (max-width: 980px) {
+    font-size: 24px;
+  }
+
+  &_ta-l {
+    text-align: left;
+  }
+
+  &_ta-c {
+    text-align: center;
+  }
+
+  &_uline {
+    text-decoration: underline;
+    font-family: inherit;
   }
 }

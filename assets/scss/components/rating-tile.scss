@@ -1,0 +1,47 @@
+.rating-tile {
+  border-radius: 8px;
+  // x, y, blur, spread
+  box-shadow: 0 0 3px rgb(0 0 0 / 20%);
+  position: relative;
+
+  .image {
+    border-radius: 8px 8px 0 0;
+    width: 100%;
+  }
+
+  .content {
+    padding: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    .name {
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .description {
+      font-size: 14px;
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+
+      .star {
+        height: 14px;
+        width: 14px;
+      }
+    }
+
+    .info {
+      color: var(--secondary);
+      font-size: 12px;
+
+      .type {
+        color: black;
+        font-size: 14px;
+      }
+    }
+  }
+
+}

@@ -21,7 +21,13 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: "~/plugins/vuelidate.js" },
+    { src: "~/plugins/masonry.js" }
   ],
+
+  googleAnalytics: {
+    id: 'UA-232446565-1',
+  },
 
 
 
@@ -31,12 +37,22 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     '@nuxt/typescript-build',
+    '@nuxtjs/google-fonts',
+    '@nuxtjs/dotenv',
+    '@nuxtjs/google-analytics'
   ],
 
   shopify: {
     domain: 'georgetheepic.myshopify.come',
     storefrontAccessToken: "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",
     unoptimized: false,
+  },
+
+  googleFonts: {
+    download: true,
+    families: {
+      Poppins: true,
+    }
   },
 
   server: {
@@ -52,7 +68,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: 'http://0.0.0.0:80/api/',
+    baseURL: process.env.BASE_URL || "http://localhost:80/api/",
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

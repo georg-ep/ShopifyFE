@@ -1,11 +1,11 @@
 <template>
   <div class="selector">
     <div>
-      Colour: <span class="featured-colour">{{ data[selected].name }}</span>
+      Colour: <b>{{ data[selected].name }}</b>
     </div>
     <div class="colours">
       <div
-        :style="{ background: colour.colour }"
+        :style="{ background: colour.hex_colour }"
         class="option"
         v-for="(colour, index) in data"
         :key="`color_${index}`"

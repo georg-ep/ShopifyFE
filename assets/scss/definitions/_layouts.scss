@@ -4,6 +4,10 @@
   align-items: center;
   justify-content: center;
 
+  &_min {
+    min-height: 517px;
+  }
+
   &_content-smaller {
     width: 800px;
 
@@ -51,4 +55,40 @@
   height: 1px;
   background: black;
   margin: 48px 0;
+}
+
+.title {
+  font-size: 56px;
+  margin: 24px 0;
+
+  &_nm {
+    margin: 0;
+  }
+
+  &_secondary {
+    color: var(--secondary);
+  }
+}
+
+.pointer {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.flex-row {
+  display: flex;
+
+  &_space {
+    justify-content: space-between;
+  }
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.standout {
+  color: var(--primary);
+  font-weight: bold;
 }

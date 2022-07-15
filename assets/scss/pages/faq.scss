@@ -1,15 +1,18 @@
 .faq {
+  transition: 0.3s ease-in-out;
+  opacity: 0;
+  transform: translateX(-50px);
+
+  &.active {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
   .header {
-    font-weight: bold;
+    font-weight: 700;
     font-size: 24px;
     margin-bottom: 24px;
     color: var(--primary)
-  }
-
-  .title {
-    font-size: 56px;
-    margin: 24px 0;
-    text-align: center;
   }
 
   .desc {

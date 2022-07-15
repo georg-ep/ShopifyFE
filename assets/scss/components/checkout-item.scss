@@ -29,21 +29,26 @@
 
     .header-field {
       margin-left: 36px;
+      width: 150px;
 
       @media (max-width: 770px) {
         margin-left: 0;
       }
 
       .title {
-        font-weight: bold;
+        font-weight: 700;
         margin-bottom: 4px;
       }
       .subtitle {
         color: var(--primary);
 
+        &_black {
+          color: black;
+        }
+
         .original {
           text-decoration: line-through;
-          color: var(--error);
+          color: black;
         }
       }
     }
@@ -60,7 +65,7 @@
 
     .product-info {
       .title {
-        font-weight: bold;
+        font-weight: 700;
         font-size: 18px;
         color: black;
         margin-bottom: 12px;
@@ -100,11 +105,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
 
   &_title {
-    font-weight: bold;
+    font-weight: 700;
     color: var(--text-dark-grey);
-    font-size: 18px;
+    font-size: 24px;
     margin-bottom: 12px;
   }
 

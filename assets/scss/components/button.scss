@@ -1,6 +1,6 @@
 .button {
   padding: 12px 24px;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 18px;
   border-radius: 4px;
   display: inline-block;
@@ -17,7 +17,6 @@
   }
 
   @media (max-width: 600px) {
-    padding: 6px 12px;
     font-size: 12px;
   }
   

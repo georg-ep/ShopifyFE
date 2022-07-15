@@ -1,15 +1,15 @@
 <template>
   <div class="container">
     <div class="container_content-smaller">
-      <div class="faq">
-        <div class="title">FAQ</div>
+      <div id="faq" class="faq">
+        <div class="title ta-c">FAQ</div>
         <div class="header">What payment methods do you accept?</div>
         <div class="desc">
           We accept payment via AMEX, APPLE PAY, DISCOVER, ELO, PAY, JCB, OPAY,
           MASTERCARD and VISA.
         </div>
         <div class="desc">
-          No credit card information is ever saved by ShopStrato and it remains
+          No credit card information is ever saved by GoShopTheMarket and it remains
           the private property of the cardholder at all times before, during,
           and after the product purchase. Please note that all payments are
           charged in USD.
@@ -77,7 +77,7 @@
           All of our shipments include Tracking with Delivery Confirmation. If
           the tracking information confirms that the item has been delivered to
           your order address but you have not received your order, please
-          contact us at help@shopstrato.com
+          contact us at support@goshopthemarket.com
         </div>
 
         <div class="header">What is your returns and exchange policy?</div>
@@ -107,6 +107,12 @@
 <script>
 export default {
   name: "FAQ",
+  mounted() {
+    setTimeout(
+      () => document.getElementById("faq").classList.add("active"),
+      50
+    );
+  },
 };
 </script>
 

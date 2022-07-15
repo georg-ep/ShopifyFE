@@ -10,22 +10,34 @@
             alt="burger-menu"
           />
           <div @click="$router.push('/')" class="logo">GoShopTheMarket</div>
-          <Textfield
+          <!-- <Textfield
             class="tf"
             :flex="1"
             :search="true"
             :placeholder="'Search for a product'"
-          />
+          /> -->
+          <div style="flex: 1" class="links">
+            <div
+              v-for="(link, index) in links"
+              :key="`link_${index}`"
+              class="link"
+              @click="$router.push(link.route)"
+            >
+              {{ link.name }}
+            </div>
+          </div>
           <div class="trailing-icons d-flex">
             <div class="d-flex discount">
               <img class="icon ctw" src="~/assets/icons/sale-tag.svg" alt="" />
               <div>
-                <div>USE CODE <span class="sale">SAVE10</span></div>
-                <div>AT CHECKOUT</div>
+                <div>USE CODE <span class="sale">SAVE10</span> AT CHECKOUT</div>
               </div>
             </div>
             <div class="cart-wrapper">
-              <div v-if="cart && cart.total_cart_items > 0" class="cart-wrapper_label">
+              <div
+                v-if="cart && cart.total_cart_items > 0"
+                class="cart-wrapper_label"
+              >
                 {{ cart.total_cart_items }}
               </div>
               <img
@@ -43,16 +55,6 @@
             <div>USE CODE <span class="sale">SAVE10</span> AT CHECKOUT</div>
           </div>
         </div>
-        <div class="links">
-          <div
-            v-for="(link, index) in links"
-            :key="`link_${index}`"
-            class="link"
-            @click="$router.push(link.route)"
-          >
-            {{ link.name }}
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -66,22 +68,21 @@ export default {
       type: Boolean,
       default: false,
     },
-    cart: {
-      type: Object,
-      default: () => {},
-    },
   },
   data() {
     return {
       links: [
-        { name: "Home", route: "/" },
-        { name: "Track your order", route: "/track" },
+        { name: "Products", route: "/product/pen/" },
+        { name: "Become an Affiliate", route: "/affiliate" },
         { name: "FAQs", route: "/faq" },
         { name: "Contact", route: "/contact" },
       ],
     };
   },
   computed: {
+    cart() {
+      return this.$store.getters.cart;
+    },
     menuSrc() {
       return this.showMenu
         ? require("~/assets/icons/close.svg")
