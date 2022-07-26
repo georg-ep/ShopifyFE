@@ -30,12 +30,12 @@
               @click="toPayment()"
               :activate-spinner="loadingCheckout"
               :text="'Checkout'"
+              :background="'transparent'"
+              :text-color="'var(--primary)'"
             />
             <Button
               v-if="checkout.line_items.length && !loadingCheckout"
               @click="$router.push('/product/pen/')"
-              :outline="true"
-              :text-color="'var(--primary)'"
               class="ml-8"
               :text="'Continue Shopping'"
             />
@@ -91,7 +91,7 @@ export default {
         })
       );
       await this.client.checkout.addLineItems(checkout.id, line_items);
-      window.open(checkout.webUrl);
+      window.location.replace(checkout.webUrl);
       this.loadingCheckout = false;
     },
     async updateQuantity(quantity, index) {
@@ -101,7 +101,6 @@ export default {
         colour: this.checkout.line_items[index].colour,
         quantity,
       });
-      console.log("checkout", this.checkout);
     },
   },
 };

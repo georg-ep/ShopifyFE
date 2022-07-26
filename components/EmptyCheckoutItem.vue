@@ -7,7 +7,6 @@
       </div>
       <Button
         @click="$router.push('/product/pen/')"
-        :outline="true"
         :text-color="'var(--primary)'"
         class="mt-24"
         :font-size="'14px'"

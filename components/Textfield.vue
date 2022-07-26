@@ -28,8 +28,18 @@
         :style="styles"
       />
     </div>
-    <div class="error" :class="error ? 'error_show' : 'error_hide'">
-      {{ errorText }}
+    <div class="error" :class="hasError ? 'error_show' : 'error_hide'">
+      <div v-for="(rule, index) in rules" :key="`rule_${index}`">
+        <div v-if="!error[rule.name] || !model">
+          {{ rule.text }}
+        </div>
+      </div>
+      <div
+        v-for="(error, index) in customErrors"
+        :key="`custom-error_${index}`"
+      >
+        {{ error.text }}
+      </div>
     </div>
   </div>
 </template>
@@ -46,13 +56,21 @@ export default {
       type: String,
       default: "",
     },
+    customErrors: {
+      type: Array,
+      default: () => [],
+    },
     headingColor: {
       type: String,
       default: "white",
     },
     error: {
-      type: [String, Boolean],
+      type: [String, Boolean, Object],
       default: false,
+    },
+    rules: {
+      type: Array,
+      default: () => [],
     },
     background: {
       type: String,
@@ -68,7 +86,7 @@ export default {
     },
     outline: {
       type: String,
-      default: "0 0 0 1px var(--primary)",
+      default: "1px solid var(--primary)",
     },
     flex: {
       type: Number,
@@ -92,6 +110,9 @@ export default {
     },
   },
   computed: {
+    hasError() {
+      return (this.rules && this.error.$error) || this.customErrors.length;
+    },
     errorText() {
       return typeof this.error === "boolean" ? "" : this.error;
     },
@@ -109,12 +130,12 @@ export default {
         background: this.background,
         flex: this.flex,
         height: this.height,
-        "box-shadow": this.outline,
+        border: this.outline,
         width: this.width,
         "input::placeholder": this.color,
       };
-      if (this.error) {
-        styles["box-shadow"] = "0 0 0 1px red";
+      if (this.hasError) {
+        styles.border = "1px solid red";
       }
       return styles;
     },

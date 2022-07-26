@@ -2,7 +2,7 @@
   <div
     :style="[
       styles,
-      { color: activateSpinner ? 'var(--primary)' : textColor },
+      { color: textColor },
     ]"
     @click="$emit('click')"
     class="button"
@@ -17,8 +17,8 @@ export default {
   name: "Button",
   props: {
     outline: {
-      type: Boolean,
-      default: false,
+      type: String,
+      default: "var(--primary)",
     },
     textColor: {
       type: String,
@@ -48,6 +48,10 @@ export default {
       type: String,
       default: "auto",
     },
+    background: {
+      type: String,
+      default: "var(--primary)"
+    },
     text: {
       type: String,
       default: "",
@@ -56,7 +60,7 @@ export default {
   computed: {
     styles() {
       const styles = {
-        background: this.color,
+        background: this.background,
         color: this.textColor,
         width: this.width,
         height: this.height,
@@ -64,9 +68,8 @@ export default {
         'font-size': this.fontSize,
       };
       if (this.outline || this.activateSpinner) {
-        delete styles["background"];
         styles["color"] = this.color;
-        styles["box-shadow"] = `0 0 0 1px ${this.color}`;
+        styles["border"] = `1px solid ${this.outline}`;
       }
       return styles;
     },

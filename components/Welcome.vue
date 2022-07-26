@@ -16,8 +16,7 @@
               @click="$router.push('/product/pen/')"
               class="button"
               :text="'What\'s Trending?'"
-              :outline="true"
-              :text-color="'var(--primary)'"
+              :text-colour="'white'"
             />
           </div>
         </div>

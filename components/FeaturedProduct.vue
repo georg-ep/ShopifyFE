@@ -3,7 +3,7 @@
     <div class="label">Current Bestseller</div>
     <div class="warning">Trending and selling out fast</div>
     <img class="image" src="~/assets/images/pens/1.png" alt="" />
-    <Button @click="toRoute" :text="'View'" :outline="true" :text-color="'var(--primary)'" />
+    <Button @click="toRoute" :text="'View'" :text-color="'white'" />
   </div>
 </template>
 

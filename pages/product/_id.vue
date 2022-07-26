@@ -26,6 +26,7 @@
             <div class="current">£{{ product.price }}</div>
           </div>
           <ColourSelector
+            v-if="product.colours"
             class="mt-24"
             :data="product.colours"
             @update-colour="colour = $event.name"
@@ -42,6 +43,7 @@
               :width="'100%'"
               :text="cartText"
               :activate-spinner="buttonSpinner"
+              :text-colour="'white'"
               @click="createCheckout"
             />
           </div>
@@ -89,7 +91,7 @@ export default {
     async createCheckout() {
       this.buttonSpinner = true;
 
-      await this.$store.dispatch("updateLineItems", {
+      this.res = await this.$store.dispatch("updateLineItems", {
         quantity: this.quantity,
         colour: this.colour,
         product_id: this.product.shopify_id,

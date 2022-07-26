@@ -14,6 +14,12 @@ export const mutations = {
 };
 
 export const actions = {
+  async createAffiliate(context, payload) {
+    return await this.$axios.$post(`affiliate/create/`, payload);
+  },
+  async fetchAffiliate(context, payload) {
+    return await this.$axios.$post(`affiliate/fetch/`, payload);
+  },
   async subscribe(context, payload) {
     return await this.$axios.$post(`subscribe/`, payload);
   },

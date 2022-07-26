@@ -37,14 +37,14 @@
                 :error="error"
                 :label="'Email'"
                 :placeholder="'Enter your email'"
-                :outline="'0 0 0 1px white'"
+                :outline="'1px solid white'"
                 class="mb-12"
               />
               <Button
                 :text="'Sign up!'"
                 class="mb-12"
-                :outline="true"
                 @click="subscribe"
+                :background="'transparent'"
               />
               <div
                 class="message"

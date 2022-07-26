@@ -5,33 +5,35 @@
         <div class="title">Contact Us</div>
         <div
           class="message"
-          :class="[`message_${message}`, { message_visible: message }]"
+          :class="[`message_success`, { message_visible: success }]"
         >
-          {{ messageText }}
+          Thanks for contacting us, we'll be in touch shortly
         </div>
         <div class="top-row" :class="{ 'top-row_slide-down': emailError }">
           <Textfield
-            :model.sync="data.name"
-            :error="errors.name"
+            :model.sync="name"
+            :error="$v.name"
+            :rules="rules.name"
             :placeholder="'Name'"
           />
           <Textfield
             class="email-field"
-            :error="errors.email"
-            :model.sync="data.email"
+            :error="$v.email"
+            :model.sync="email"
+            :rules="rules.email"
             :placeholder="'Email'"
           />
         </div>
         <Textfield
-          :error="errors.phone"
           class="mb-12"
-          :model.sync="data.phone"
+          :model.sync="phone"
           :placeholder="'Phone number'"
         />
         <Textfield
           :type="'textarea'"
-          :error="errors.message"
-          :model.sync="data.message"
+          :error="$v.message"
+          :rules="rules.message"
+          :model.sync="message"
           :height="'200px'"
           :placeholder="'Message'"
         />
@@ -44,31 +46,38 @@
 </template>
 
 <script>
+import { required, email } from "vuelidate/lib/validators";
+
 export default {
   name: "Contact",
   data() {
     return {
-      errors: {
-        name: "",
-        email: "",
-        phone: "",
-        message: "",
+      rules: {
+        name: [{ name: "required", text: "This field is required" }],
+        message: [{ name: "required", text: "This field is required" }],
+        email: [
+          { name: "required", text: "This field is required" },
+          { name: "email", text: "Please enter a valid email" },
+        ],
       },
-      data: {
-        name: "",
-        email: "",
-        phone: "",
-        message: "",
-      },
-      message: null,
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
       emailError: false,
+      success: false,
     };
   },
-  computed: {
-    messageText() {
-      return this.message === "success"
-        ? "Thanks for contacting us, we'll be in touch shortly"
-        : "Please check the form for errors";
+  validations: {
+    email: {
+      required,
+      email,
+    },
+    message: {
+      required,
+    },
+    name: {
+      required,
     },
   },
   mounted() {
@@ -78,37 +87,23 @@ export default {
     );
   },
   methods: {
-    reset() {
-      Object.keys(this.errors).forEach((key) => (this.errors[key] = false));
-      this.emailError = false;
-    },
-    validate() {
-      let err = false;
-      this.reset();
-      Object.keys(this.errors).forEach((key) => {
-        if (!this.data[key]) {
-          this.$set(this.errors, key, true);
-          err = true;
-        }
-      });
-      if (err) this.message = "error";
-
-      console.log(this.errors);
-      console.log(err);
-      return !err;
-    },
     async postMessage() {
-      if (!this.validate()) return;
-      try {
-        await this.$store.dispatch("postContact", this.data);
-        Object.keys(this.data).forEach((key) => delete this.data[key]);
-        this.message = "success";
-      } catch (e) {
-        if (e.response.data.detail.includes("email")) {
-          this.errors.email = e.response.data.detail;
-          this.emailError = true;
+      this.$v.$touch();
+      if (!this.$v.$invalid) {
+        try {
+          await this.$store.dispatch("postContact", {
+            name: this.name,
+            email: this.email,
+            phone: this.phone,
+            message: this.message,
+          });
+          this.success = true;
+          const fields = ["name", "phone", "email", "message"];
+          fields.forEach((field) => delete this[field]);
+          setTimeout(() => this.success = false, 5000);
+        } catch (e) {
+          console.log(e.response);
         }
-        console.log(e.response);
       }
     },
   },

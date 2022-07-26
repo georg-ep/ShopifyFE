@@ -16,6 +16,12 @@
             v-for="i in data.stars"
             :key="`star_${i}`"
           />
+          <img
+            src="~/assets/icons/unfilled-star.svg"
+            class="star ctb"
+            v-for="i in 5 - +data.stars"
+            :key="`star_${i}`"
+          />
         </div>
         <div class="description">
           {{ data.description }}
