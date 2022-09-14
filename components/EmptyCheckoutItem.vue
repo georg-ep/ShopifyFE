@@ -6,8 +6,8 @@
         Add items to your cart in order to checkout
       </div>
       <Button
-        @click="$router.push('/product/pen/')"
-        :text-color="'var(--primary)'"
+        @click="$router.push('/products/')"
+        :text-color="'white'"
         class="mt-24"
         :font-size="'14px'"
         :text="'Shop Products'"

@@ -1,11 +1,13 @@
 <template>
   <div class="container mb-24">
     <div class="container_content-smaller">
-      <div class="title ta-c title_nm mt-24">Become an Affiliate</div>
-      <div class="title_secondary ta-c mb-24">
-        Thanks for taking an interest on becoming an affiliate
+      <div class="title ta-c">Become an Affiliate</div>
+      <div class="title_secondary">
+        Our affiliate program is a great way to get earn a few extra $$$ on the
+        side when pruchasing our products. The process is very simple, read
+        below for more information
       </div>
-      <div class="title_secondary underline">
+      <div class="subtitle_medium mt-24">
         You might be asking, what's in it for me?
       </div>
       <div class="title_secondary mb-24">

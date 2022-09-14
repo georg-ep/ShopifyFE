@@ -10,6 +10,16 @@
 <script>
 export default {
   name: "IndexPage",
+  head: {
+    title: "Home Page",
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'GoShopTheMarket offers the latest, trending products at great prices.'
+      }
+    ],
+  },
   data() {
     return {
       cols: [

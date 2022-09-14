@@ -44,9 +44,9 @@
         margin: 24px auto 48px auto;
         height: 400px;
 
-        @media (max-width: 500px) {
-          width: calc(100% - 16px);
-          height: calc(100% - 16px);
+        @media (max-width: 1160px) {
+          height: 300px;
+          width: 300px;
         }
       }
     }
@@ -54,8 +54,13 @@
     .description {
       font-size: 18px;
       color: rgba($color: #000000, $alpha: 0.5);
-      width: 600px;
-      margin: 0 auto;
+      width: 100%;
+      margin-left: 48px;
+
+      @media (max-width: 952px) {
+        width: calc(100% - 32px);
+        margin: 0 auto;
+      }
 
       @media (max-width: 640px) {
         width: calc(100% - 32px);
@@ -63,15 +68,16 @@
 
       ul {
         padding-left: 0;
+
         list-style-type: lower-greek;
       }
-      
+
       &:last-child {
         margin-bottom: 18px;
       }
 
-      @media (max-width: 980px) {
-        font-size: 12px;
+      @media (max-width: 500px) {
+        font-size: 14px;
       }
 
       .bold {
@@ -101,7 +107,7 @@
         display: inline-block;
         padding: 4px;
       }
-      
+
       .original {
         text-decoration: line-through;
       }

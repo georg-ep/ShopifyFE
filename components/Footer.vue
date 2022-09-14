@@ -10,9 +10,9 @@
               <div @click="$router.push('/contact/')" class="link">
                 Contact Us
               </div>
-              <div @click="$router.push('/affiliate/')" class="link">
+              <!-- <div @click="$router.push('/affiliate/')" class="link">
                 Become Affiliated
-              </div>
+              </div> -->
               <div @click="$router.push('/terms/')" class="link">
                 Terms Of Service
               </div>
@@ -31,10 +31,11 @@
               <div class="heading">SIGN UP & SAVE</div>
               <Textfield
                 :model.sync="email"
+                :error="$v.email"
+                :rules="rules.email"
                 :background="'black'"
                 :color="'white'"
                 :heading-color="'#CCCCCC'"
-                :error="error"
                 :label="'Email'"
                 :placeholder="'Enter your email'"
                 :outline="'1px solid white'"
@@ -89,6 +90,8 @@
 </template>
 
 <script>
+import { required, email } from "vuelidate/lib/validators";
+
 export default {
   name: "Footer",
   data() {
@@ -96,49 +99,39 @@ export default {
       email: "",
       messageText: "",
       error: false,
+      rules: {
+        email: [
+          { name: "required", text: "This field is required" },
+          { name: "email", text: "Enter a valid email" },
+        ],
+      },
     };
   },
-  mounted() {},
-  computed: {
-    validateEmail() {
-      return (email) =>
-        String(email)
-          .toLowerCase()
-          .match(
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          );
+  validations: {
+    email: {
+      required,
+      email,
     },
   },
   methods: {
-    resetMessage() {
-      setTimeout(() => {
-        this.error = false;
-        this.messageText = "";
-      }, 4000);
-    },
     async subscribe() {
-      this.error = false;
-      this.messageText = "";
-      if (!this.validateEmail(this.email)) {
-        this.error = true;
-        this.messageText = "Please enter a valid email";
-        this.resetMessage();
-        return;
-      }
-      try {
-        await this.$store.dispatch("subscribe", { email: this.email });
-        this.messageText = "Thanks for subscribing";
-        this.email = "";
-      } catch (e) {
-        this.error = true;
-        console.log("error", e, e.response);
-        if (e.response && e.response.data && e.response.data.detail) {
-          this.messageText = e.response.data.detail;
-        } else {
-          this.messageText = "An unknown error occurred";
+      this.$v.$touch();
+      if (!this.$v.$invalid) {
+        try {
+          await this.$store.dispatch("subscribe", { email: this.email });
+          this.messageText = "Thanks for subscribing";
+          this.email = "";
+        } catch (e) {
+          this.error = true;
+          console.log("error", e, e.response);
+          if (e.response && e.response.data && e.response.data.detail) {
+            this.messageText = e.response.data.detail;
+          } else {
+            this.messageText = "An unknown error occurred";
+          }
+        } finally {
+          this.resetMessage();
         }
-      } finally {
-        this.resetMessage();
       }
     },
   },

@@ -70,6 +70,14 @@
   }
 }
 
+.subtitle {
+  color: black;
+
+  &_medium {
+    font-size: 24px;
+  }
+}
+
 .pointer {
   &:hover {
     cursor: pointer;

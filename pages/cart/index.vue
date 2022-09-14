@@ -35,7 +35,7 @@
             />
             <Button
               v-if="checkout.line_items.length && !loadingCheckout"
-              @click="$router.push('/product/pen/')"
+              @click="$router.push('/products/')"
               class="ml-8"
               :text="'Continue Shopping'"
             />

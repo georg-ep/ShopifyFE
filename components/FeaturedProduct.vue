@@ -12,7 +12,7 @@ export default {
   name: "FeaturedProduct",
   methods: {
     toRoute() {
-      this.$router.push("/product/pen/");
+      this.$router.push("/products/pen/");
     },
   },
 };

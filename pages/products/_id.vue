@@ -12,7 +12,7 @@
               src="~/assets/icons/star.svg"
               class="star ctb"
               v-for="(star, index) in Math.ceil(product.average_rating)"
-              :key="`star_${index}`"
+              :key="`m-star_${index}`"
             />
             <div @click="scroll()" class="count">
               ({{ product.reviews.length }})

@@ -8,13 +8,13 @@
           src="~/assets/icons/star.svg"
           class="star ctb"
           v-for="i in review.stars"
-          :key="`star_${i}`"
+          :key="`s_f-star_${i}`"
         />
         <img
           src="~/assets/icons/unfilled-star.svg"
           class="star ctb"
           v-for="i in unfilledStars"
-          :key="`star_${i}`"
+          :key="`s_u-star_${i}`"
         />
       </div>
       <div class="description mb-12">{{ review.description }}</div>

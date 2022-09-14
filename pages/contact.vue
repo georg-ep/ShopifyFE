@@ -50,6 +50,16 @@ import { required, email } from "vuelidate/lib/validators";
 
 export default {
   name: "Contact",
+    head: {
+    title: "Contact Us",
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Any questions or suggestions? Contact us and we will be back to you as soon as we can!'
+      }
+    ],
+  },
   data() {
     return {
       rules: {

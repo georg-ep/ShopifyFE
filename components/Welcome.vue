@@ -13,7 +13,7 @@
           </div>
           <div class="d-flex">
             <Button
-              @click="$router.push('/product/pen/')"
+              @click="$router.push('/products/')"
               class="button"
               :text="'What\'s Trending?'"
               :text-colour="'white'"

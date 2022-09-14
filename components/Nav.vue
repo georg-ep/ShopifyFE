@@ -72,8 +72,8 @@ export default {
   data() {
     return {
       links: [
-        { name: "Products", route: "/product/pen/" },
-        { name: "Become an Affiliate", route: "/affiliate" },
+        { name: "Products", route: "/products/" },
+        // { name: "Become an Affiliate", route: "/affiliate" },
         { name: "FAQs", route: "/faq" },
         { name: "Contact", route: "/contact" },
       ],

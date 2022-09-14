@@ -3,6 +3,23 @@
   flex-direction: column;
   width: 500px;
 
+  .spinner-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    .loading-text {
+      color: var(--primary);
+      font-size: 12px;
+    }
+  }
+
+
+  &_align-spinner {
+    align-items: center;
+  }
+
   @media (max-width: 600px) {
     width: 100%;
   }
@@ -11,6 +28,11 @@
     margin-bottom: 24px;
     height: 500px;
     width: 500px;
+    display: none;
+
+    &_loaded {
+      display: block;
+    }
 
     @media (max-width: 600px) {
       width: calc(100% - 16px);
@@ -31,6 +53,11 @@
       width: 56px;
       padding: 4px;
       transition: 0.1s ease-in-out;
+      display: none;
+      
+      &_loaded {
+        display: block;
+      }
 
       @media (max-width: 600px) {
         width: 32px;

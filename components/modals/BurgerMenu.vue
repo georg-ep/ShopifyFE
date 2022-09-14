@@ -35,7 +35,7 @@ export default {
     return {
       links: [
         { name: "Home", route: "/" },
-        { name: "Products", route: "/product/pen/" },
+        { name: "Products", route: "/products/" },
         { name: "Become an Affiliate", route: "/affiliate" },
         { name: "FAQs", route: "/faq" },
         { name: "Cart", route: "/cart" },
