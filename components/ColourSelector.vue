@@ -1,6 +1,6 @@
 <template>
   <div class="selector">
-    <div>
+    <div v-if="data[selected]">
       Colour: <b>{{ data[selected].name }}</b>
     </div>
     <div class="colours">

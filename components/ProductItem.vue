@@ -1,7 +1,7 @@
 <template>
   <div class="product">
     <img
-      v-if="product.images"
+      v-if="product.images.length"
       @click="toProduct"
       class="image pointer"
       :src="product.images[0].image"

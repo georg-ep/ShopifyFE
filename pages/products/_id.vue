@@ -3,7 +3,11 @@
     <div class="container_content">
       <div class="product">
         <div class="left-side">
-          <ImageCatalog :images="product.images" class="mb-24" />
+          <ImageCatalog
+            v-if="product.images.length"
+            :images="product.images"
+            class="mb-24"
+          />
         </div>
         <div class="info">
           <div class="title">{{ product.name }}</div>
@@ -14,7 +18,7 @@
               v-for="(star, index) in Math.ceil(product.average_rating)"
               :key="`m-star_${index}`"
             />
-            <div @click="scroll()" class="count">
+            <div v-if="product.reviews.length" @click="scroll()" class="count">
               ({{ product.reviews.length }})
             </div>
           </div>

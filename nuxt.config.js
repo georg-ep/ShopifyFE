@@ -12,7 +12,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }
     ]
   },
 
@@ -42,12 +42,6 @@ export default {
     '@nuxtjs/google-analytics'
   ],
 
-  shopify: {
-    domain: 'georgetheepic.myshopify.come',
-    storefrontAccessToken: "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",
-    unoptimized: false,
-  },
-
   googleFonts: {
     download: true,
     families: {
@@ -63,12 +57,24 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    'nuxt-shopify'
   ],
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL: process.env.BASE_URL || "http://localhost:80/api/",
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        token: {
+          required: false,
+          type: false,
+          maxAge: 86400 // seconds - 1 day
+        },
+      },
+      cookie: true
+    }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

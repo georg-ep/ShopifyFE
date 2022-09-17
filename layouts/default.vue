@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import Client from "shopify-buy";
 import BurgerMenu from "~/components/modals/BurgerMenu.vue";
 import Modals from "~/components/modals/index.vue";
 export default {

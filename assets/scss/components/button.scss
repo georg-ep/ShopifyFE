@@ -10,6 +10,7 @@
   justify-content: center;
   transition: 0.3s ease-in-out;
   white-space: nowrap;
+  box-sizing: border-box;
 
   .spinner {
     height: 24px;

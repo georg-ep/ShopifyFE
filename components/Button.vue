@@ -36,6 +36,10 @@ export default {
       type: String,
       default: "var(--primary)",
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
     padding: {
       type: String,
       default: "auto",
@@ -67,10 +71,18 @@ export default {
         padding: this.padding,
         'font-size': this.fontSize,
       };
+
       if (this.outline || this.activateSpinner) {
         styles["color"] = this.color;
         styles["border"] = `1px solid ${this.outline}`;
       }
+
+      if (this.disabled) {
+        styles["background"] = "#c8c8c8";
+        styles["color"] = "white";
+        styles["border"] = "none";
+      }
+
       return styles;
     },
   },

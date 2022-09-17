@@ -1,5 +1,5 @@
 <template>
-  <div class="textfield-wrapper">
+  <div class="textfield-wrapper" :style="{ width: width }">
     <div :style="{ color: headingColor }" v-if="label" class="label">
       {{ label }}
     </div>
@@ -96,6 +96,10 @@ export default {
       type: String,
       default: "auto",
     },
+    fontSize: {
+      type: String,
+      default: "16px",
+    },
     placeholder: {
       type: String,
       default: "",
@@ -130,8 +134,9 @@ export default {
         background: this.background,
         flex: this.flex,
         height: this.height,
+        "font-size": this.fontSize,
         border: this.outline,
-        width: this.width,
+        width: this.width + " !important",
         "input::placeholder": this.color,
       };
       if (this.hasError) {

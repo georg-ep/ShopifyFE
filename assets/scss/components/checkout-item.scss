@@ -2,6 +2,9 @@
   padding: 21px;
   box-shadow: 0 0 0 1px var(--primary), 5px 10px var(--primary);
   display: flex;
+  width: 100%;
+  height: fit-content;
+  box-sizing: border-box;
 
   @media (max-width: 770px) {
     flex-direction: column;
